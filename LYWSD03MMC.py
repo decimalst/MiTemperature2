@@ -339,6 +339,8 @@ parser.add_argument("--count","-c", help="Read/Receive N measurements and then e
 parser.add_argument("--interface","-i", help="Specifiy the interface number to use, e.g. 1 for hci1", metavar='N', type=int, default=0)
 parser.add_argument("--unreachable-count","-urc", help="Exit after N unsuccessful connection tries", metavar='N', type=int, default=0)
 parser.add_argument("--mqttconfigfile","-mcf", help="specify a configurationfile for MQTT-Broker")
+parser.add_argument("--fahrenheit", help="Send temps in fahrenheit instead of Celsius")
+
 
 
 rounding = parser.add_argument_group("Rounding and debouncing")
@@ -687,7 +689,10 @@ elif args.passive:
 
 				measurement.battery = batteryPercent
 				measurement.humidity = humidity
-				measurement.temperature = temperature
+                if args.fahrenheit:
+                    measurement.temperature = temperature * (9/5) + 32
+                else:
+                    measurement.temperature = temperature
 				measurement.voltage = batteryVoltage if batteryVoltage != None else 0
 				measurement.rssi = rssi
 				return measurement
