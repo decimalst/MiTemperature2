@@ -128,6 +128,8 @@ optional arguments:
                         Exit after N unsuccessful connection tries
   --mqttconfigfile MQTTCONFIGFILE, -mcf MQTTCONFIGFILE
                         specify a configurationfile for MQTT-Broker
+  --fahrenheit
+						output temperature measurements in fahrenheit
 
 Rounding and debouncing:
   --round, -r           Round temperature to one decimal place (and in passive mode humidity to whole numbers)
